@@ -177,6 +177,118 @@
 	<p><i>Please contribute more steps <a href="{{ contributeSteps }}">here</a>.</i></p>
 	<br />
 
+        Your provided structure is already well-organized and detailed. Below are four additional high-priority features that I suggest integrating into the checklist to make it even more comprehensive:
 
+12. Fourier Transform Analysis
+
+<p>
+	Use Fourier Transform to reveal hidden patterns, especially if the image contains frequency-modulated data. This approach is useful for detecting encoded signals or hidden images.
+</p>
+<p>
+	Tools such as <a href="https://www.audacityteam.org/">Audacity</a> or Python libraries like <code>numpy</code> and <code>scipy</code> can be used for this purpose.
+</p>
+<p>
+	Example Python code for analysis:
+</p>
+<pre>
+<code>
+from scipy.fftpack import fft2
+from PIL import Image
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+img = Image.open(‘filename.png’).convert(‘L’)
+fft_image = np.log(np.abs(fft2(img)))
+plt.imshow(fft_image, cmap=‘gray’)
+plt.show()
+
+
+
+<p>
+	Related write-ups:
+</p>
+<ul>
+	<li><a href="https://github.com/ctfs/write-ups-2016/tree/master/picoctf-2016/steg/hidden-frequencies">PicoCTF 2016</a></li>
+</ul>
+<br /><br />
+
+
+13. Hidden QR Codes
+
+<p>
+	QR codes can be concealed within images by modifying pixel colors or patterns. Use tools like <a href="https://github.com/ZBar/ZBar">ZBar</a> or online QR code scanners to identify and decode them.
+</p>
+<p>
+	Command to extract and decode QR codes:
+</p>
+<pre>
+<code>zbarimg filename.png</code>
+</pre>
+<p>
+	Inspect the image with various color planes to reveal potential QR patterns.
+</p>
+<p>
+	Related write-ups:
+</p>
+<ul>
+	<li><a href="https://github.com/ctfs/write-ups-2017/tree/master/csaw-ctf-2017/forensics/qr-image">CSAW CTF 2017</a></li>
+</ul>
+<br /><br />
+
+
+14. Palette Analysis for Type 3 PNGs
+
+<p>
+	For PNGs with indexed color (type 3), explore the color palette for embedded data. Use tools like <a href="https://imagemagick.org/">ImageMagick</a> or <a href="https://github.com/GrokImageCompression/Grok">Grok</a>.
+</p>
+<p>
+	Command to extract and analyze the color palette:
+</p>
+<pre>
+<code>identify -verbose filename.png</code>
+</pre>
+<p>
+	Manually inspect palette indexes and color combinations for hidden flags.
+</p>
+<p>
+	Related write-ups:
+</p>
+<ul>
+	<li><a href="https://github.com/ctfs/write-ups-2015/tree/master/securinets-ctf-2015/forensics/dogepalette">Securinets CTF 2015</a></li>
+</ul>
+<br /><br />
+
+
+15. Advanced LSB Data Extraction
+
+<p>
+	Use specialized tools like <a href="https://github.com/zed-0xff/zsteg">zsteg</a> to detect and extract LSB (Least Significant Bit) data:
+</p>
+<pre>
+<code>zsteg filename.png</code>
+</pre>
+<p>
+	Options to explore:
+	<ul>
+		<li><code>-a</code>: Analyze all available methods.</li>
+		<li><code>-E [method]</code>: Extract data using a specific method.</li>
+	</ul>
+</p>
+<p>
+	Additionally, write custom scripts for detailed LSB analysis if the flag is heavily obfuscated.
+</p>
+<p>
+	Related write-ups:
+</p>
+<ul>
+	<li><a href="https://github.com/ctfs/write-ups-2020/tree/master/google-ctf-2020/forensics/steganography-200">Google CTF 2020</a></li>
+</ul>
+<br /><br />
+
+
+Final Note:
+
+These four features—Fourier Transform Analysis, Hidden QR Codes, Palette Analysis, and Advanced LSB Data Extraction—add critical methods to your checklist for solving challenging CTF image steganography problems. by AiPals
 
 </div>
